@@ -1,0 +1,3 @@
+Telethon
+SQLAlchemy
+psycopg2
