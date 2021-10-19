@@ -1,4 +1,4 @@
-#AutoForward
+# AutoForward
 
 Auto forward messages from chats to others with your **Telegram** user account
 
