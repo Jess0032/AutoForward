@@ -1,0 +1,40 @@
+{
+  "name": "MergeBot",
+  "description": "A simple telegram bot that takes a list of files sent by the user and returns them 7zipped or merged",
+  "keywords": [
+    "forward",
+    "telethon",
+    "bot",
+    "telegram"
+  ],
+  "repository": "https://github.com/Jess0032/MergeBot/",
+  "success_url": "/welcome",
+  "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org/apps",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org/apps",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "Get this value by running https://repl.it/@KeselekPermen/UserButt#main.py",
+        "required": true
+      }
+  },
+  "formation": {
+      "worker": {
+        "quantity": 1,
+        "size": "free"
+      }
+    },
+  "image": "heroku/python",
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ]
+}
