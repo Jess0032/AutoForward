@@ -1,6 +1,6 @@
 {
-  "name": "MergeBot",
-  "description": "A simple telegram bot that takes a list of files sent by the user and returns them 7zipped or merged",
+  "name": "Auto Forward",
+  "description": "Auto forward messages from chats to others with your Telegram user account",
   "keywords": [
     "forward",
     "telethon",
