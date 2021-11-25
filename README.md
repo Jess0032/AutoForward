@@ -50,7 +50,7 @@ Auto forward messages from chats to others with your **Telegram** user account
 
     API_ID - Get this value from https://my.telegram.org/apps
     API_HASH - Get this value from https://my.telegram.org/apps
-    STRING_SESSION - :arrow_down_small:
+    STRING_SESSION - ⬇️
     DATABASE_URL - 
 
 
