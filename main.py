@@ -78,11 +78,17 @@ async def add_elements(event):
             except Exception as e:
                 await event.respond(f'{id} is not a valid entity.')
                 print(e)
-    if db.add_items(tipo, list_valida):
-        await event.respond(f'Elements successfully added to {tipo}.')
-        await act_list(tipo)
     else:
-        await event.respond(error)
+        list_valida = lista
+    if list_valida:
+        if db.add_items(tipo, list_valida):
+            await event.respond(f'Elements successfully added to {tipo}.')
+            await act_list(tipo)
+        else:
+            await event.respond(error)
+    else:
+        await event.respond('no element has been added.')
+
 
 
 @client.on(NewMessage(pattern='\/delete (.+)\n((\s*\d)+)', chats="me"))
