@@ -5,8 +5,8 @@ Auto forward messages from chats to others with your **Telegram** user account
 ## Supported Types
 
  - **anime** (specify keyword to regex)
- - **channel_to** (username, invite links, ID)
- - **channel_from** (equals to channel_to)
+ - **channel_to** (ID)
+ - **channel_from** (ID)
 
 ## Commands >> Used from saved messages
 
@@ -35,10 +35,10 @@ Auto forward messages from chats to others with your **Telegram** user account
     Kaguya
 
     /add channel_from
-    https://t.me/MangaLightNovel
+    -10012345678
 
     /add channel_to
-    https://t.me/abcdfghi
+    -10087654321
 
     /delete
     1 2

@@ -15,13 +15,13 @@ class Anime(Base):
 class ChannelFrom(Base):
     __tablename__ = 'channel_from'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    att = Column(String)
+    att = Column(Integer)
 
 
 class ChannelTo(Base):
     __tablename__ = 'channel_to'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    att = Column(String)
+    att = Column(Integer)
 
 
 tables = ('anime', 'channel_from', 'channel_to')

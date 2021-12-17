@@ -29,6 +29,7 @@ error = 'An error has occurred and the items could not be added.'
 
 async def act_list(tipo: str):
     result = db.get_items(tipo)
+    print(result)
     lista = [x.att for x in result]
     if tipo == tables[0]:
         animes = lista
@@ -39,7 +40,7 @@ async def act_list(tipo: str):
             reg_exp = ''
     elif tipo == tables[1]:
         global channels
-        channels = [await client.get_input_entity(x) for x in lista]
+        channels = lista
     else:
         global destination
         destination = lista
@@ -48,7 +49,7 @@ async def act_list(tipo: str):
 
 
 def filter_type(message: NewMessage):
-    if message.input_chat in channels and (message.video or message.document)\
+    if message.peer_id.user_id in channels and (message.video or message.document)\
             and re.search(reg_exp, message.raw_text):
         return True
 
@@ -62,13 +63,23 @@ async def forward_files(event):
 
 @client.on(NewMessage(pattern='\/add (.+)((\n.+)+)', chats="me"))
 async def add_elements(event):
-    tipo = event.pattern_match.group(1)
-    lista = event.pattern_match.group(2).split('\n')[1:]
+    tipo = event.pattern_match.group(1).strip()
 
     if tipo not in tables:
         await event.respond(not_exist)
         return
-    if db.add_items(tipo, lista):
+    lista = event.pattern_match.group(2).split('\n')[1:]
+    list_valida = []
+    if tipo is 'channel_from' or tipo is 'channel_to':
+        for id in lista:
+            try:
+                await client.get_entity(int(id))
+                list_valida.append(int(id))
+            except Exception as e:
+                await event.respond(f'{id} is not a valid entity.')
+                print(e)
+
+    if db.add_items(tipo, list_valida):
         await event.respond(f'Elements successfully added to {tipo}.')
         await act_list(tipo)
     else:
@@ -77,7 +88,7 @@ async def add_elements(event):
 
 @client.on(NewMessage(pattern='\/delete (.+)\n((\s*\d)+)', chats="me"))
 async def delete_elements(event):
-    tipo = event.pattern_match.group(1)
+    tipo = event.pattern_match.group(1).strip()
     lista = event.pattern_match.group(2).split()
 
     if tipo not in tables:
@@ -102,7 +113,9 @@ async def get_elements(event):
     if lista:
         final = f'**List of {tipo}**\n'
         for element in lista:
-            final += f'\nid: {element.id} name: {element.att}'
+            final += f'\nid: {element.id} telegram_id: {element.att}'
+            if tipo is 'channel_from' or tipo is 'channel_to':
+                final += f" name: {(await client.get_entity(element.att)).title}"
         await event.respond(final)
     else:
         await event.respond(f'No items in {tipo}.')
