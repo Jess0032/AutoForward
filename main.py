@@ -70,7 +70,7 @@ async def add_elements(event):
         return
     lista = event.pattern_match.group(2).split('\n')[1:]
     list_valida = []
-    if tipo is 'channel_from' or tipo is 'channel_to':
+    if tipo == 'channel_from' or tipo == 'channel_to':
         for id in lista:
             try:
                 await client.get_entity(int(id))
@@ -78,7 +78,6 @@ async def add_elements(event):
             except Exception as e:
                 await event.respond(f'{id} is not a valid entity.')
                 print(e)
-
     if db.add_items(tipo, list_valida):
         await event.respond(f'Elements successfully added to {tipo}.')
         await act_list(tipo)
@@ -114,7 +113,7 @@ async def get_elements(event):
         final = f'**List of {tipo}**\n'
         for element in lista:
             final += f'\nid: {element.id} telegram_id: {element.att}'
-            if tipo is 'channel_from' or tipo is 'channel_to':
+            if tipo == 'channel_from' or tipo == 'channel_to':
                 final += f" name: {(await client.get_entity(element.att)).title}"
         await event.respond(final)
     else:
