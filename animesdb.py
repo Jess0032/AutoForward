@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, String, BIGINT, Integer
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
@@ -15,13 +15,13 @@ class Anime(Base):
 class ChannelFrom(Base):
     __tablename__ = 'channel_from'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    att = Column(Integer)
+    att = Column(BIGINT)
 
 
 class ChannelTo(Base):
     __tablename__ = 'channel_to'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    att = Column(Integer)
+    att = Column(BIGINT)
 
 
 tables = ('anime', 'channel_from', 'channel_to')
