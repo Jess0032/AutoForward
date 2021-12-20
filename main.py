@@ -49,8 +49,7 @@ async def act_list(tipo: str):
 
 
 def filter_type(message: NewMessage):
-    if message.message.chat_id in channels and (message.video or message.document)\
-            and re.search(reg_exp, message.raw_text):
+    if message.message.chat_id in channels and re.search(reg_exp, message.raw_text):
         return True
 
 
