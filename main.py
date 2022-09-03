@@ -57,7 +57,7 @@ def filter_type(message: NewMessage):
 async def forward_files(event):
     print(event.message)
     for dest in destination:
-        await event.message.forward_to(dest)
+        await bot.send_message(dest, event.message)
 
 
 @client.on(NewMessage(pattern='\/add (.+)((\n.+)+)', chats="me"))
