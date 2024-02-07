@@ -9,10 +9,10 @@ from animesdb import DBHelper, tables
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s]%(name)s:%(message)s', level=logging.WARNING)
 
-API_ID: int = int(os.getenv("API_ID", "7015264"))
-API_HASH: str = os.getenv("API_HASH", "9ebbc8ad41951c59b0908cdd2100a158")
-STRING_SESSION: str = os.environ.get("STRING_SESSION", "1AZWarzoBu8DJlcutrXD4GlK6A1MQhBTpcavRK6JxaPAsNaJQsu2Ydl46indcZ9808QSOqMfKw3JGrnGbfsXWAWdLSUDBXTyIVIyK1X8YI2E9AbZggJvyqDKVouYUbIc-g_uVlGEDiopHVYXPuZG4tByK1zOFdzPJE-qUngFK4ZPJsP19Zw-9WKRceAraDa9pH2B7uLZA4YuJrLE0CHnSF8l_KObt2MC-J5_Q6o51dZBN02A36a3Wo48cEhMLAKa2mQGfNmIO01pGnBwtgNpgZs2-RZ3iVv3eGrZql_EjIsKH7lbbVlMLzgkzLU3_Qt5dsCerPySTN8V5pB1cfOtd5BgLGJeU1tk=")
-db = DBHelper(os.getenv("DATABASE_URL", "postgres://dismbfut:ilAIzqP-elOph6S681t6zqME9K4gF6yc@heffalump.db.elephantsql.com/dismbfut"))
+API_ID: int = int(os.getenv("API_ID"))
+API_HASH: str = os.getenv("API_HASH")
+STRING_SESSION: str = os.environ.get("STRING_SESSION" None)
+db = DBHelper(os.getenv("DATABASE_URL"))
 
 client = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH).start()
 
